@@ -1,0 +1,40 @@
+
+
+{
+  "manifest_version": 3,
+  "name": "pos search mst",
+  "version": "1.0",
+  "permissions": [
+    "webNavigation",
+    "storage",
+    "declarativeContent",
+    "activeTab",
+    "scripting"
+  ],
+  "host_permissions": [
+    "https://pos-ent-uat.haravan.app/"
+  ],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "action": {
+    "default_popup": "popup.html"
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "https://pos-ent-uat.haravan.app/orders/*",
+        "https://pos-ent-uat.haravan.app/"
+      ],
+      "js": [
+        "content.js"
+      ],
+      "run_at": "document_end",
+      "css": [ "style.css" ]
+    }
+  ],
+  "web_accessible_resources": [{
+    "resources": ["content.js"],
+    "matches": ["<all_urls>"]
+  }]
+}
